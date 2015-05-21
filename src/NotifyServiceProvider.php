@@ -4,14 +4,13 @@
  * This file is part of Notify,
  *
  * @license MIT
- * @package Coderjp\Verifier
+ * @package Coderjp\Notify
  */
 
 use Illuminate\Support\ServiceProvider;
 
 class NotifyServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application events.
      *
@@ -19,7 +18,6 @@ class NotifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Publish config files
         $this->publishes([
             __DIR__.'config/config.php' => config_path('notify.php'),
         ]);
@@ -33,6 +31,7 @@ class NotifyServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerNotify();
+        $this->mergeConfig();
     }
 
     /**
@@ -47,4 +46,15 @@ class NotifyServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Merges user's and notify's configs.
+     *
+     * @return void
+     */
+    private function mergeConfig()
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/config/config.php', 'notify'
+        );
+    }
 }
