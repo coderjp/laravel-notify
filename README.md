@@ -11,9 +11,7 @@ Require this package with composer using the following command:
 
     composer require coderjp/notify
 
-Then run `composer install` or `composer update`.
-
-After updating composer, add the service provider to the `providers` array in `config/app.php`
+Add the service provider to the `providers` array in `config/app.php`
 
     'Coderjp\Notify\NotifyServiceProvider',
     
@@ -35,10 +33,12 @@ By default the options are `success, error, info`.
 ### Storing Notifications
 To store a notification call the type like so
 
-    Notify::success('The user was added!);
-    Notify::error('There was a problem adding the user, Please try again);
-    Notify::info('The user's password was changed);
-    
+```php
+Notify::success('The user was added!);
+Notify::error('There was a problem adding the user, Please try again);
+Notify::info('The user's password was changed);
+```
+
 ### Outputing Notifications
 
 To output a certain type of notification
