@@ -3,7 +3,7 @@
 Notifications for Laravel 5. This is a simple package that extends  Illuminate MessageBag.
 It provides a simple interface for displaying notifications.
 
-Please be note this uses **session flashing** and therefore the messages are only stored for 1 page redirect, not
+Please note, this uses **session flashing** and therefore the messages are only stored for 1 page redirect, not
 indefinitely.
 
 ## Installation
