@@ -35,8 +35,8 @@ To store a notification call the type like so
 
 ```php
 Notify::success('The user was added!');
-Notify::error('There was a problem adding the user, Please try again);
-Notify::info('The user's password was changed);
+Notify::error('There was a problem adding the user, Please try again');
+Notify::info('The user\'s password was changed');
 ```
 
 ### Outputing Notifications
