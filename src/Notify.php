@@ -46,11 +46,13 @@ class Notify extends MessageBag
      * @param $type
      * @param $message
      */
-    public function storeNotification($type, $message)
+    public function storeNotification($type, $message, $flash = true)
     {
         $this->add($type, $message);
 
-        $this->app->session->flash($this->getSessionName(), $this->messages);
+        if ($flash) {
+            $this->app->session->flash($this->getSessionName(), $this->messages);
+        }
     }
 
     /**
@@ -69,6 +71,14 @@ class Notify extends MessageBag
      */
     public function __call($method, $params)
     {
+        $flash = true;
+        preg_match('/([a-zA-Z]+)Now/', $method, $matches);
+
+        if (count($matches) === 2) {
+            $method = $matches[1];
+            $flash = false;
+        }
+
         if (!in_array($method, $this->getTypes())) {
             throw new BadMethodCallException("Method [$method] does not exist");
         }
@@ -78,7 +88,7 @@ class Notify extends MessageBag
         }
 
         foreach ($params as $message) {
-            $this->storeNotification($method, $message);
+            $this->storeNotification($method, $message, $flash);
         }
     }
 }

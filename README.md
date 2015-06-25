@@ -3,7 +3,7 @@
 Notifications for Laravel 5. This is a simple package that extends  Illuminate MessageBag.
 It provides a simple interface for displaying notifications.
 
-Please note, this uses **session flashing** and therefore the messages are only stored for 1 page redirect, not
+Please note, to show notifications on redirect this uses **session flashing**, therefore the messages are only stored for 1 page redirect, not
 indefinitely.
 
 ## Installation
@@ -31,12 +31,23 @@ By default the options are `success, error, info`.
 ## Usage
 
 ### Storing Notifications
-To store a notification call the type like so
+
+Notifications can be either be displayed on redirect or on the current page.
+
+To store a notification so it is **displayed on the next redirect**, call the type like so
 
 ```php
 Notify::success('The user was added!');
 Notify::error('There was a problem adding the user, Please try again');
 Notify::info('The user\'s password was changed');
+```
+
+To store a notification so it is **displayed on the current page**, call the type like so
+
+```php
+Notify::successNow('The user was added!');
+Notify::errorNow('There was a problem adding the user, Please try again');
+Notify::infoNow('The user\'s password was changed');
 ```
 
 ### Outputing Notifications
